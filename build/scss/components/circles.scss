@@ -1,0 +1,64 @@
+.circles {
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	top: 30px;
+	transform: translateY(-50%);
+	@include flex(center);
+
+	.circle {
+		position: absolute;
+
+		&:last-child {
+			position: relative;
+		}
+	}
+}
+
+.circle {
+	border: 2px dashed lighten($c-main, 40%);
+	border-radius: 50%;
+	min-width: 320px;
+
+	&::before {
+	    content: "";
+	    display: block;
+	    padding-top: 100%;
+	}
+}
+
+$circle-size: 320px 530px 740px;
+
+@for $i from 1 through length($circle-size) {
+	.circles .circle:nth-child(#{$i}) {
+		width: nth($circle-size, $i);
+	}
+} 
+
+.circles .circle:nth-child(1) {
+	animation: rotate-clockwise 40s linear infinite;
+}
+.circles .circle:nth-child(2) {
+	animation: rotate-anticlockwise 80s linear infinite;
+}
+.circles .circle:nth-child(3) {
+	animation: rotate-clockwise 120s linear infinite;
+}
+
+@keyframes rotate-clockwise {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-anticlockwise {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(-360deg);
+    }
+}

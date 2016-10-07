@@ -1,0 +1,69 @@
+.governance {
+	@extend %list-reset;
+	position: relative;
+	width: 330px;
+	margin-top: $space--m;
+	border-right: 2px dashed lighten($c-main, 30%);
+	padding: $space--xs 0;
+	transform: translateX(-50%);
+}
+
+.governance__item__button {
+	@extend %transition;
+	position: relative;
+	background-color: transparent;
+	border: none;
+	font-weight: 700;
+	text-align: right;
+	width: 100%;
+	font-size: 20px;
+	padding: $space--xs $space--s $space--xs 0;
+	color: $c-txt;
+	outline: 0;
+	cursor: pointer;
+
+	&:hover {
+		color: $c-main;
+	}
+
+	&::after {
+		@extend %transition;
+		content: '';
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 7.5px 10px 7.5px 0;
+		border-color: transparent lighten($c-main, 30%) transparent transparent;
+		position: absolute;
+	    right: -2px;
+	    top: 50%;
+	    transform: translateY(-50%) scale(0);
+	}
+}
+
+.governance__item__text {
+	@extend %transition;
+	@include flex(center null, true);
+	position: absolute;
+	left: 100%;
+	width: 100%;
+	top: 0;
+	height: 100%;
+	padding-left: $space--s;
+	opacity: 0;
+	margin: 0;
+}
+
+.governance__item.is-active {
+	.governance__item__button {
+		color: $c-main;
+
+		&::after {
+			transform: translateY(-50%) scale(1);
+		}
+	}
+
+	.governance__item__text {
+		opacity: 1;
+	}
+}

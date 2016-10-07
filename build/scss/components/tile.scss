@@ -1,0 +1,86 @@
+.tile {
+	position: relative;
+	width: 250px;
+
+	&::before {
+	    content: "";
+	    display: block;
+	    padding-top: 100%;
+	}
+
+	&:nth-child(n+2)::after {
+		content: "";
+		position: absolute;
+		width: 20px;
+		height: 8px;
+		border-radius: 8px;
+		top: 50%;
+		left: 0;
+		transform: translate(-50%, -50%);
+		background-color: #fff;
+	}
+
+	&:nth-child(even) .tile__content::before {
+		background-color: darken($c-main, 8%);
+	}
+
+	&:hover {
+		.tile__title {
+			color: #fff;
+			transform: translateY(-50%) scale(3);
+			opacity: 0.1;
+		}
+		.tile__text {
+			opacity: 1;
+			margin-top: 0;
+		}
+		.tile__more {
+			opacity: 0;
+			transform: scale(0.7);
+		}
+	}
+}
+
+.tile__content	{
+	@include flex(center, true);
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	text-align: center;
+	overflow: hidden;
+
+	&::before {
+		@include pseudo-bg($c-main, 1);
+		@extend %transition;
+	}
+
+	>* {
+		@extend %transition;
+		position: absolute;
+	}
+}
+
+.tile__title {
+	top: 50%;
+	font-weight: 700;
+	font-size: 36px;
+	color: $c-highlight;
+	transform: translateY(-50%);
+}
+
+.tile__text {
+	padding: 0 30px;
+	font-size: 18px;
+	color: #fff;
+	margin: 0;
+	opacity: 0;
+	margin-top: 20px;
+}
+
+.tile__more {
+	bottom: $space--m;
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 2px solid #fff;
+}

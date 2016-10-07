@@ -1,0 +1,136 @@
+.wrap-map {
+	@include flex(null center);
+	position: relative;
+	width: 100%;
+	height: 600px;
+	text-align: center;
+	background-color: $c-main;
+	margin-top: $space--s;
+}
+
+.map {
+	position: relative;
+	margin: 0 auto;
+	width: 90%;
+	max-width: 890px;
+
+	img {
+		width: 100%;
+	}
+}
+
+.pastilles {
+	@include fill('parent', true);
+}
+
+.pastille {
+	@extend %transition;
+	@include flex(null stretch);
+	position: absolute;
+	width: 90px;
+	height: 90px;
+	cursor: pointer;
+	background-color: $c-txt;
+	border-radius: 50%;
+
+	&:not(.is-expanded):hover {
+		transform: scale(1.1);
+	}
+}
+
+.pastille__basic {
+	@extend %transition;
+	@include flex(center, true);
+	width: 100%;
+}
+
+.pastille__more {
+	@extend %transition;
+	width: 0%;
+}
+
+.pastille__label {
+	@extend %transition;
+	font-size: 11px;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	line-height: 1.4;
+}
+
+.pastille__percent {
+	@extend %transition;
+	font-size: 28px;
+	color: $c-highlight;
+}
+
+
+.pastille--medium {
+	width: 110px;
+	height: 110px;
+
+	.pastillle__percent {
+		font-size: 35px;
+	}
+}
+
+.pastille--large {
+	width: 150px;
+	height: 150px;
+	background-color: $c-highlight;
+
+	.pastille__label {
+		font-size: 16px;
+		color: $c-main;
+	}
+
+	.pastille__percent {
+		font-size: 45px;
+		color: $c-txt;
+	}
+}
+
+$pastille-position: (
+	(1%, 41%), 
+	(58%, 41%), 
+	(20%, 9%), 
+	(52%, 24%), 
+	(10%, 65%), 
+	(33%, 52%), 
+	(44%, 72%), 
+	(60%, 85%) 
+);
+
+@for $i from 1 through length($pastille-position) {
+	$positions: nth($pastille-position, $i);
+	.pastille:nth-child(#{$i}) {
+		top: nth($positions, 1);
+		left: nth($positions, 2);
+	}
+} 
+
+.pastille.is-expanded {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	padding: $space--s;
+	border-radius: 3px;
+
+	.pastille__basic {
+		width: 30%;
+	}
+
+	.pastille__more {
+		width: 70%;
+	}
+
+	.pastille__label {
+		font-size: 28px;
+	}
+
+	.pastille__percent {
+		font-size: 60px;
+	}
+}

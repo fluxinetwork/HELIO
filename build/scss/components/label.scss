@@ -1,0 +1,13 @@
+.label {
+	background-color: $c-highlight;
+	border-radius: 3px;
+	font: 700 14px $font-h;
+	color: $c-txt;
+	padding: $space--xs $space--xs*2;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.label--large {
+
+}

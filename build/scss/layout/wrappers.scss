@@ -1,0 +1,19 @@
+/*------------------------------*\
+
+    #WRAPPERS
+
+\*------------------------------*/
+
+
+.section {
+	position: relative;
+	@include flex(center, true);
+	width: 100%;
+	min-height: 100vh;
+	padding: $space--l 0;
+}
+
+.grid {
+	position: relative;
+	display: flex;
+}
